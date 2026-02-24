@@ -12,133 +12,76 @@
 
 ## ⬇️ Download & Play
 
-> The full game build is hosted on OneDrive. No installation required — just download, unzip, and play!
+> Due to the massive scale of the high-fidelity 3D assets (~7.9GB), the raw Unity project files are not hosted on GitHub to preserve repository performance. Instead, you can download the fully compiled, playable game directly from our secure educational OneDrive.
 
-**👉 [Download Full Game (game.zip)](https://portland-my.sharepoint.com/:u:/g/personal/tsunwaiho6-c_my_cityu_edu_hk/IQB-77ERexq1R4pYpmJQbxc8Ac7-OAL4jcs0wKdPExZD5Ro?e=6GzXnT)**
+**👉 [Download Full Game Build (game.zip)](https://portland-my.sharepoint.com/:u:/g/personal/tsunwaiho6-c_my_cityu_edu_hk/IQB-77ERexq1R4pYpmJQbxc8Ac7-OAL4jcs0wKdPExZD5Ro?e=6GzXnT)**
 
 > **System Requirements:**
-> - OS: Windows 10 / macOS 10.14 or above
-> - RAM: 8 GB or above recommended
-> - Storage: ~7 GB free space
-> - GPU: Dedicated graphics card recommended for best experience
+> - **OS:** Windows 10 / macOS 10.14 or above
+> - **RAM:** 8 GB or above recommended
+> - **Storage:** ~7 GB free space required for extraction
+> - **GPU:** Dedicated graphics card strongly recommended for rendering real-time lighting and high-res textures.
 
 ---
 
-## 📖 Introduction
+## 📖 Project Overview
 
-**Roaming SPACE** addresses a genuine problem faced by new students at HKU SPACE Community College: unfamiliarity with the campus structure of the Kowloon East Campus (KEC). Traditional orientation methods — such as single guided tours or static online resources — are unmemorable and unattractive.
+**Roaming SPACE** was engineered to solve a genuine problem faced by new students at HKU SPACE Community College: unfamiliarity with the complex campus structure of the Kowloon East Campus (KEC). Traditional orientation methods — such as single guided tours or static online floor plans — are often unmemorable and fail to engage students.
 
-Through **gamification**, our team transformed the KEC campus into an immersive 3D first-person game. Players can freely explore a meticulously recreated campus or challenge themselves in a horror mode filled with puzzles and monster chases — all while unconsciously memorizing the real campus layout.
+By leveraging **gamification**, our team transformed the KEC campus into a highly immersive 3D first-person game. Players can freely explore a meticulously recreated 1:1 campus or challenge themselves in a tense "Horror Mode" filled with puzzles and AI-driven monster chases. This approach allows players to unconsciously memorize the real campus layout while experiencing an adrenaline-pumping gameplay loop.
 
----
-
-## 🎮 Game Modes
-
-### 🔵 Free Mode (Visit Mode)
-Players navigate the KEC campus freely from a first-person perspective. Interactive **sightseeing spots** (marked with `!`) are placed in key rooms — clicking them displays **real photographs** of the actual campus facilities, bridging the gap between the virtual and real environments.
-
-### 🔴 Horror Mode
-The player becomes a **"Free-Rider"** whose GPA has been seized by the *GPA God* and *Offer God*. To escape, players must:
-- Explore each floor of the campus
-- Solve **diversified puzzles and question challenges**
-- Collect all keys to reunite body and soul
-- Evade an **AI-driven monster** that hunts the player — its speed scales with the number of questions answered incorrectly
-
-The horror atmosphere is reinforced by **eerie lighting**, **low visibility**, and carefully designed **ambient sound effects**.
+For deeper insights into how this game was built, please explore our documentation:
+- 📄 [Game Design Document (GDD)](docs/Game_Design_Document.md)
+- ⚙️ [Technical Architecture](docs/Technical_Architecture.md)
+- 📝 [Post-Mortem & Development Reflection](docs/Post_Mortem.md)
 
 ---
 
-## ✨ Key Features
+## 🎮 Core Game Modes
 
-- **1:1 Campus Recreation** — ~70-80% accuracy restoration of all accessible KEC floors (G/F to 10/F)
-- **First-Person Perspective** — maximizes immersion and exploration
-- **Dual Game Modes** — catering to casual visitors and horror game enthusiasts alike
-- **Real Photo Integration** — in-game sightseeing spots display actual campus photos
-- **AI Chase Mechanism** — custom Unity NavMesh AI with dynamic difficulty scaling
-- **Scene Layering Architecture** — independent floor scenes with teleportation system to optimize memory and loading performance
-- **Unique Concept** — the first horror game to use HKU SPACE KEC as its game world
+### 🔵 Free Mode (Virtual Tour)
+Designed for casual exploration. Players navigate the KEC campus freely from a first-person perspective. Interactive **Sightseeing Spots** (marked with `!`) are placed in key rooms. Clicking them displays **real-life reference photographs** of the actual campus facilities, bridging the gap between the virtual construct and the real environment.
 
----
+### 🔴 Horror Mode (Survival Challenge)
+The player takes on the persona of a **"Free-Rider"** whose academic destiny (GPA) has been seized by the elusive *GPA God* and *Offer God*. To escape the nightmare, players must:
+- Navigate the darkened, eerie corridors of KEC.
+- Solve **diversified puzzles and academic-themed questions**.
+- Collect hidden keys to reunite body and soul.
+- Evade a relentless **AI-driven monster**. The monster's movement speed dynamically scales based on the number of questions the player answers incorrectly.
 
-## 🛠️ Technologies Used
-
-| Tool | Purpose |
-|---|---|
-| **Unity (C#)** | Game engine, scripting, AI behaviour, scene management |
-| **Blender** | 3D modelling of campus floors, furniture, and props |
-| **Unity NavMesh** | AI pathfinding for the monster chase mechanism |
-| **Unity Addressables** | Scene layering and optimized asset loading |
-| **GitHub** | Version control and project documentation |
+The horror atmosphere is heavily reinforced by **dynamic low-visibility lighting**, **eerie ambient soundscapes**, and sudden chase sequences.
 
 ---
 
-## 🏗️ Project Architecture
+## ✨ Key Technical Features
 
-```
-Roaming SPACE
-├── GROUND/          # Ground floor 3D model assets
-├── 1F/              # 1st floor assets
-├── 2F/              # 2nd floor assets
-├── 3F/              # 3rd floor assets
-├── Floorplan/       # Reference floor plan documents
-├── 3DmodelShare/    # Shared 3D prop assets (chairs, desks, etc.)
-└── [Full game available via download link above]
-```
+- **1:1 Campus Recreation** — Achieved ~70-80% architectural accuracy of all accessible KEC floors (G/F to 10/F) using custom Blender models and real-world floor plans.
+- **Dynamic AI Chase Mechanism** — Utilized Unity NavMesh to build an AI that calculates the shortest path to the player dynamically.
+- **Scene Layering Architecture** — To handle the massive 7GB+ asset load, the campus was divided into independent floor scenes. A custom teleportation system loads and unloads floors dynamically to optimize RAM usage.
+- **Immersive Real-Photo Integration** — Seamlessly blends 3D environments with 2D high-res real-world photography for educational purposes.
 
 ---
 
-## 👥 Development Team — T3-7 Small Potatoes
+## 👥 Development Team (T3-7 Small Potatoes)
 
-| Member | Student ID | Responsibilities |
+| Member | Student ID | Core Responsibilities |
 |---|---|---|
-| **Ho Tsun Wai** | 20238849 | G/F–4/F modelling, Game programming, AI chase system, Horror & Free mode design |
-| **Tang Pui Yin** | 20237812 | 5/F–6/F modelling, 3D prop assets, Level design |
-| **Yeung Tsz Him** | 20237982 | 7/F–8/F modelling, Project management, Asset integration, Meeting minutes |
-| **Yu Chun Hei** | 20238878 | 9/F–10/F modelling, Story concept, Full report writing |
-
----
-
-## 📊 Project Timeline
-
-| Milestone | Date | Description |
-|---|---|---|
-| Project Direction | Nov 2024 | Defined problem statement and solution |
-| Campus Photography | Dec 2024 | Shot 50+ locations across all KEC floors |
-| 3D Modelling (Blender) | Jan–Mar 2025 | Built floor-by-floor campus model |
-| Unity Programming | Mar–Apr 2025 | Implemented game mechanics and horror mode |
-| User Testing | Apr 2025 | Beta testing with secondary school students |
-| Final Submission | Apr 29, 2025 | Submitted final report and game build |
-
----
-
-## 📋 Testing & Results
-
-The game was evaluated through a **user testing survey** with beta testers of varying ages:
-
-- **70%** of testers reported improved familiarity with the KEC campus layout after playing
-- **60%** of testers were satisfied with the horror elements (atmosphere, chase mechanics)
-- Testers confirmed the game successfully replaces traditional monotonous orientation methods
+| **Ho Tsun Wai** | 20238849 | Game Programming (C#), AI Chase System Engine, Core Gameplay Loop, G/F–4/F 3D Modelling |
+| **Tang Pui Yin** | 20237812 | Level Design, 5/F–6/F 3D Modelling, Shared Prop Asset Creation |
+| **Yeung Tsz Him** | 20237982 | Project Management, Asset Integration, 7/F–8/F 3D Modelling |
+| **Yu Chun Hei** | 20238878 | Narrative & Concept Design, Documentation, 9/F–10/F 3D Modelling |
 
 ---
 
 ## 🔭 Future Scope
 
-- Complete missing campus floors (3/F and 4/F) using Blender and integrate via Unity
-- Add **multi-language support** (English, Traditional Chinese, Simplified Chinese)
-- Implement **door opening/closing mechanics** for improved realism
-- Expand **AI behaviour tree** with multiple enemy modes
-- Build a **leaderboard system** to track game completion speed
-- Explore formal collaboration with HKU SPACE to deploy the game on the school network
-
----
-
-## 📚 References
-
-- Dumancic, M., Ruic, I. M. (2015). *Gamification in Education*. Informatologia, 48(3), 198–204.
-- Garcia, M. B., et al. (2023). *A Playable 3D Virtual Tour for an Interactive Campus Visit Experience*. 2023 9th International Conference on Virtual Reality. https://doi.org/10.1109/ICVR57957.2023.10169768
+While the core FYP requirements have been met successfully, the technical roadmap for future iterations includes:
+- **Unity Addressables Integration:** To further optimize scene loading and reduce memory overhead.
+- **Multi-language Support:** Implementation of a localization system (English, Traditional Chinese, Simplified Chinese) for international students.
+- **Expanded AI Behavior Trees:** Adding patrol, investigate, and ambush states to the monster AI to reduce predictability.
+- **Official Deployment:** Exploring formal collaboration with HKU SPACE to deploy the executable on the school's internal orientation network.
 
 ---
 
 ## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
+This educational project is open-sourced under the [MIT License](LICENSE). Note that the license applies to the structural code and documentation; real-world photos and campus architectural likenesses remain the property of HKU SPACE.
