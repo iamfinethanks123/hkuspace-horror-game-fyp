@@ -6,9 +6,9 @@
 ![Modeling](https://img.shields.io/badge/Modeling-Blender-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-> **Course:** CCIT4080B Final Year Project — HKU SPACE Community College  
-> **Team:** T3-7 Small Potatoes  
-> **Year:** 2025–2026  
+> **Course:** CCIT4080B Final Year Project — HKU SPACE Community College
+> **Team:** T3-7 Small Potatoes
+> **Year:** 2025–2026
 
 ---
 
@@ -38,15 +38,19 @@ By wrapping campus navigation inside an engaging horror game, the project turns 
 ## Background & Motivation
 
 ### Problem Statement
+
 Many freshmen at HKU SPACE KEC report feeling disoriented during their first weeks. Traditional orientation methods (printed maps, guided tours) are passive and easily forgotten.
 
 ### Proposed Solution
+
 A gamified, self-paced 3D exploration tool that:
+
 - Reconstructs every major floor of KEC using reference photography and architectural floor plans.
 - Embeds **"Sightseeing Points"** — in-game hotspots that display real photographs of the actual location, bridging the virtual and real worlds.
 - Provides a **Horror Mode** that raises stakes: getting lost means being chased by an enemy AI, reinforcing spatial memory through adrenaline.
 
 ### Target Users
+
 - Prospective and incoming students at HKU SPACE KEC.
 - Event participants visiting the campus for the first time.
 
@@ -55,6 +59,7 @@ A gamified, self-paced 3D exploration tool that:
 ## Game Modes
 
 ### 1. Free Mode (Visit Mode)
+
 | Feature | Details |
 |---|---|
 | Objective | Freely explore the campus at your own pace |
@@ -63,6 +68,7 @@ A gamified, self-paced 3D exploration tool that:
 | Best For | Orientation, first-time visitors |
 
 ### 2. Horror Mode
+
 | Feature | Details |
 |---|---|
 | Objective | Solve floor-based puzzles and questions |
@@ -81,7 +87,12 @@ A gamified, self-paced 3D exploration tool that:
 | 1F | Classrooms, student common areas |
 | 2F | Administrative offices, meeting rooms |
 | 3F | Computer labs, study rooms |
-| 4F–9F | Lecture theatres, faculty offices, library |
+| 4F | Lecture theatres, faculty offices |
+| 5F | Lecture theatres, seminar rooms |
+| 6F | Faculty offices, project rooms |
+| 7F | Library, reading areas |
+| 8F | Student services, counselling |
+| 9F | Management offices, conference rooms |
 | 10F | Rooftop / upper facilities |
 
 Each floor is implemented as a **separate Unity Scene** and connected via teleport triggers to manage memory and performance.
@@ -106,15 +117,25 @@ Each floor is implemented as a **separate Unity Scene** and connected via telepo
 
 ```
 hkuspace-horror-game-fyp/
-├── 1F/                  # Floor 1 reference photos & floor plan assets
-├── 2F/                  # Floor 2 reference photos & floor plan assets
-├── 3F/                  # Floor 3 reference photos & floor plan assets
-├── 10F/                 # Floor 10 reference photos & floor plan assets
-├── Floorplan/           # Architectural floor plan scans used for modelling
+├── GROUND/             # Ground floor reference photos & assets
+├── 1F/                 # Floor 1 reference photos & floor plan assets
+├── 2F/                 # Floor 2 reference photos & floor plan assets
+├── 3F/                 # Floor 3 reference photos & floor plan assets
+├── 4F/                 # Floor 4 reference photos & floor plan assets
+├── 5F/                 # Floor 5 reference photos & floor plan assets
+├── 6F/                 # Floor 6 reference photos & floor plan assets
+├── 7F/                 # Floor 7 reference photos & floor plan assets
+├── 8F/                 # Floor 8 reference photos & floor plan assets
+├── 9F/                 # Floor 9 reference photos & floor plan assets
+├── 10F/                # Floor 10 reference photos & floor plan assets
+├── Floorplan/          # Architectural floor plan scans used for modelling
+├── 3DmodelShare/       # Shared 3D model assets (Blender files, exports)
+├── OTHERS/             # Miscellaneous reference materials
 ├── docs/
-│   ├── TECHNICAL.md     # Architecture, scene design, AI system
-│   ├── TESTING.md       # Testing approach, evaluation, known issues
+│   ├── TECHNICAL.md    # Architecture, scene design, AI system
+│   ├── TESTING.md      # Testing approach, evaluation, known issues
 │   └── BUILD_AND_RUN.md # How to run the downloaded build
+├── RoamingSPACE_Poster.pdf  # Project poster
 ├── .gitignore
 ├── CONTRIBUTING.md
 ├── LICENSE
@@ -134,6 +155,7 @@ The complete game build is available for download via the link below:
 **[⬇️ Download Roaming SPACE (ZIP, ~7GB)](https://portland-my.sharepoint.com/:u:/g/personal/tsunwaiho6-c_my_cityu_edu_hk/IQB-77ERexq1R4pYpmJQbxc8Ac7-OAL4jcs0wKdPExZD5Ro?e=6GzXnT)**
 
 ### System Requirements
+
 | Requirement | Minimum | Recommended |
 |---|---|---|
 | OS | Windows 10 | Windows 10/11 |
@@ -143,18 +165,31 @@ The complete game build is available for download via the link below:
 | Storage | 10 GB free | 15 GB free (SSD preferred) |
 
 ### Quick Start
+
 1. Download and extract the ZIP file to your local drive.
 2. Open the extracted folder and run `RoamingSPACE.exe`.
 3. Select your preferred game mode from the main menu.
 4. Use `WASD` to move, `Mouse` to look around, `E` to interact.
 
-For detailed instructions, see [docs/BUILD_AND_RUN.md](docs/BUILD_AND_RUN.md).
+For detailed instructions, see [docs/BUILD_AND_RUN.md](https://github.com/iamfinethanks123/hkuspace-horror-game-fyp/blob/main/docs/BUILD_AND_RUN.md).
 
 ---
 
 ## Screenshots & Floor Plans
 
-Reference photographs and floor plans used during the modelling process are stored in the `/1F`, `/2F`, `/3F`, `/10F`, and `/Floorplan` directories of this repository. These document the real-world locations that were recreated in the game.
+Reference photographs and floor plans used during the modelling process are stored in the floor directories of this repository. These document the real-world locations that were recreated in the game:
+
+| Directory | Contents |
+|---|---|
+| `/GROUND` | Ground floor lobby, entrance, corridors |
+| `/1F` | Floor 1 classrooms and common areas |
+| `/2F` | Floor 2 offices and meeting rooms |
+| `/3F` | Floor 3 computer labs and study rooms |
+| `/4F` – `/9F` | Lecture theatres, faculty offices, library |
+| `/10F` | Rooftop and upper facilities |
+| `/Floorplan` | Architectural floor plan scans |
+| `/3DmodelShare` | Shared Blender 3D model assets |
+| `/OTHERS` | Miscellaneous reference materials |
 
 ---
 
@@ -162,10 +197,10 @@ Reference photographs and floor plans used during the modelling process are stor
 
 | Document | Description |
 |---|---|
-| [TECHNICAL.md](docs/TECHNICAL.md) | System architecture, scene management, AI design, performance optimisation |
-| [TESTING.md](docs/TESTING.md) | Testing methodology, user evaluation, known issues, future improvements |
-| [BUILD_AND_RUN.md](docs/BUILD_AND_RUN.md) | Step-by-step instructions to run the game |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | How to contribute to this project |
+| [TECHNICAL.md](https://github.com/iamfinethanks123/hkuspace-horror-game-fyp/blob/main/docs/TECHNICAL.md) | System architecture, scene management, AI design, performance optimisation |
+| [TESTING.md](https://github.com/iamfinethanks123/hkuspace-horror-game-fyp/blob/main/docs/TESTING.md) | Testing methodology, user evaluation, known issues, future improvements |
+| [BUILD_AND_RUN.md](https://github.com/iamfinethanks123/hkuspace-horror-game-fyp/blob/main/docs/BUILD_AND_RUN.md) | Step-by-step instructions to run the game |
+| [CONTRIBUTING.md](https://github.com/iamfinethanks123/hkuspace-horror-game-fyp/blob/main/CONTRIBUTING.md) | How to contribute to this project |
 
 ---
 
@@ -184,7 +219,7 @@ Reference photographs and floor plans used during the modelling process are stor
 
 ## License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** — see the [LICENSE](https://github.com/iamfinethanks123/hkuspace-horror-game-fyp/blob/main/LICENSE) file for details.
 
 Real campus photographs included in this repository are used solely for academic and non-commercial purposes.
 
