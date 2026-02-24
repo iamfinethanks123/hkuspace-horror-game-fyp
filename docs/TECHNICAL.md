@@ -23,25 +23,26 @@ Roaming SPACE is built on the **Unity game engine** using **C#** as the primary 
 
 ```
 Game Entry
-    └── Main Menu Scene
-          ├── [Free Mode] → Floor Selection UI → Load Floor Scene
-          └── [Horror Mode] → Ground Floor Scene → Sequential Floor Progression
+└── Main Menu Scene
+    ├── [Free Mode] → Floor Selection UI → Load Floor Scene
+    └── [Horror Mode] → Ground Floor Scene → Sequential Floor Progression
 
 Floor Scenes (Independent)
-    ├── GroundFloor.unity
-    ├── 1F.unity
-    ├── 2F.unity
-    ├── 3F.unity
-    ├── 4F.unity
-    ├── 5F.unity
-    ├── 6F.unity
-    ├── 7F.unity
-    ├── 8F.unity
-    ├── 9F.unity
-    └── 10F.unity
+├── GroundFloor.unity
+├── 1F.unity
+├── 2F.unity
+├── 3F.unity
+├── 4F.unity
+├── 5F.unity
+├── 6F.unity
+├── 7F.unity
+├── 8F.unity
+├── 9F.unity
+└── 10F.unity
 ```
 
 ### Core Systems
+
 | System | Description |
 |---|---|
 | SceneManager | Handles async scene loading and transitions between floors |
@@ -57,19 +58,24 @@ Floor Scenes (Independent)
 ## 2. Scene Management & Floor Design
 
 ### Why Separate Scenes Per Floor?
+
 Loading every floor as a single scene would require all 3D models, textures, and assets (~7.9 GB) to be in memory simultaneously, which would cause crashes on mid-range hardware. Splitting into scenes ensures:
+
 - Only one floor's assets are loaded at a time.
 - Smooth performance on the minimum hardware spec (GTX 1060, 8GB RAM).
 - Independent development and testing of each floor.
 
 ### Floor Transition System
+
 Each floor contains **Teleport Trigger Zones** placed at stairwells and elevators. When the player enters a trigger zone:
+
 1. A loading screen is displayed.
 2. The current scene is unloaded asynchronously (`SceneManager.UnloadSceneAsync`).
 3. The target floor scene is loaded asynchronously (`SceneManager.LoadSceneAsync`).
 4. The player's spawn position is set to the corresponding entry point of the new floor.
 
 ### 3D Modelling Approach
+
 - All campus environments were modelled in **Blender** using reference photographs and architectural floor plans collected from on-site visits.
 - Models were exported as `.fbx` files and imported into Unity.
 - Modular design was used where possible (e.g., reusable corridor segments, door frames) to reduce total polygon count.
@@ -95,6 +101,7 @@ The player uses a standard **First-Person Controller** built from scratch in C#:
 This is one of the key educational features of the game.
 
 ### How It Works
+
 1. Specific landmark locations on each floor contain a **SightseepingPoint** component.
 2. When the player approaches and presses `E`, a full-screen UI panel appears.
 3. The panel displays a **real photograph** of that exact location taken on-site.
@@ -102,6 +109,7 @@ This is one of the key educational features of the game.
 5. The player presses `E` again or clicks to dismiss the panel and resume exploration.
 
 ### Educational Goal
+
 By pairing the 3D virtual reconstruction with real photos, players build a mental model that transfers to the real campus. Studies on spatial memory suggest that dual-coding (virtual + photographic) improves recall compared to maps alone.
 
 ---
@@ -109,17 +117,19 @@ By pairing the 3D virtual reconstruction with real photos, players build a menta
 ## 5. Horror Mode & AI Enemy System
 
 ### Game Loop
+
 ```
 Start Horror Mode
-    └── Player must find and answer questions on each floor
-          ├── Correct Answer → Proceed to next floor
-          └── Wrong Answer (3 strikes) → Enemy Spawns
-                ├── Enemy pursues player via NavMesh
-                ├── Player caught → Jump scare + Game Over screen
-                └── Player reaches safe room → Enemy despawns, continue
+└── Player must find and answer questions on each floor
+    ├── Correct Answer → Proceed to next floor
+    └── Wrong Answer (3 strikes) → Enemy Spawns
+        ├── Enemy pursues player via NavMesh
+        ├── Player caught → Jump scare + Game Over screen
+        └── Player reaches safe room → Enemy despawns, continue
 ```
 
 ### AI Enemy Design
+
 | Property | Detail |
 |---|---|
 | Navigation | Unity NavMesh Agent with baked navigation mesh per floor |
@@ -130,6 +140,7 @@ Start Horror Mode
 | Lighting | Flicker shader applied to lights near enemy position |
 
 ### Difficulty Considerations
+
 - The enemy is slightly slower than a sprinting player to ensure the game is escapable.
 - Safe rooms are distributed every 2–3 corridors to prevent frustration.
 - Horror elements are kept atmospheric rather than relying solely on jump scares.
@@ -180,13 +191,11 @@ Audio is managed by a singleton **AudioManager** that persists across scene load
 
 | Issue | Notes |
 |---|---|
-| Floors 4F–9F not in repo | Too large for GitHub; included in the downloadable ZIP |
+| Full Unity project not in repo | The complete Unity project (~7.9 GB with all models, textures, audio) is hosted externally; reference photos for all floors (GROUND–10F) are included in this repo |
 | NavMesh on complex geometry | Some narrow corridors may cause enemy pathfinding to stall |
 | No multiplayer | Single-player only; multiplayer was out of scope for FYP |
 | macOS build not tested | Primary target is Windows PC; macOS compatibility unverified |
 | Mobile not supported | Scene complexity exceeds mobile GPU capabilities |
 
----
-
-*For build and run instructions, see [BUILD_AND_RUN.md](BUILD_AND_RUN.md).*  
-*For testing and evaluation details, see [TESTING.md](TESTING.md).*
+For build and run instructions, see [BUILD_AND_RUN.md](https://github.com/iamfinethanks123/hkuspace-horror-game-fyp/blob/main/docs/BUILD_AND_RUN.md).
+For testing and evaluation details, see [TESTING.md](https://github.com/iamfinethanks123/hkuspace-horror-game-fyp/blob/main/docs/TESTING.md).
